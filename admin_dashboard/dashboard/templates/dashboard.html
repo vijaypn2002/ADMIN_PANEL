@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mb-4 text-center">Welcome to the Admin Dashboard</h1>
+    <p class="text-center">Manage Users, Roles, and Permissions with ease.</p>
+
+    <div class="row justify-content-center mt-5">
+        <!-- Users Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm text-center p-3" 
+                 style="background-color: #E8EAF6;  border-radius: 8px; cursor: pointer;" 
+                 onclick="location.href='{% url 'users' %}'">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="icon-box bg-white rounded-circle d-flex align-items-center justify-content-center" 
+                         style="width: 50px; height: 50px;">
+                        <i class="bi bi-people" style="font-size: 24px; color: #6A1B9A;"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                        <h5 class="fw-bold mb-1" style="color: #6A1B9A;">Users</h5>
+                        <p class="text-secondary mb-2">Manage and view all users.</p>
+                        <button class="btn btn-primary btn-sm">View Users</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roles Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm text-center p-3" 
+                 style="background-color: #FFF9C4; border-radius: 8px; cursor: pointer;" 
+                 onclick="location.href='{% url 'roles' %}'">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="icon-box bg-white rounded-circle d-flex align-items-center justify-content-center" 
+                         style="width: 50px; height: 50px; border: 2px solid #F9A825;">
+                        <i class="bi bi-person-badge" style="font-size: 24px; color: #F9A825;"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                        <h5 class="fw-bold mb-1" style="color: #e29924;">Roles</h5>
+                        <p class="text-secondary mb-2">Manage and assign roles.</p>
+                        <button class="btn btn-primary btn-sm">View Roles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Permissions Card -->
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm text-center p-3" 
+                 style="background-color: #E1F5FE; border-radius: 8px; cursor: pointer;" 
+                 onclick="location.href='{% url 'permissions' %}'">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="icon-box bg-white rounded-circle d-flex align-items-center justify-content-center" 
+                         style="width: 50px; height: 50px; border: 2px solid #0288D1;">
+                        <i class="bi bi-key" style="font-size: 24px; color: #0288D1;"></i>
+                    </div>
+                    <div class="ms-3 text-start">
+                        <h5 class="fw-bold mb-1" style="color: #0288D1;">Permissions</h5>
+                        <p class="text-secondary mb-2">Configure and view permissions.</p>
+                        <button class="btn btn-primary btn-sm">View Permissions</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Manage Permissions</h2>
+<div class="mt-4">
+    <h4>Permission Matrix</h4>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Read</th>
+                <th>Write</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for role in roles %}
+            <tr>
+                <td>{{ role.name }}</td>
+                <td>
+                    <input type="checkbox" data-role="{{ role.id }}" data-permission="Read" {% if role.permissions.Read %}checked{% endif %}>
+                </td>
+                <td>
+                    <input type="checkbox" data-role="{{ role.id }}" data-permission="Write" {% if role.permissions.Write %}checked{% endif %}>
+                </td>
+                <td>
+                    <input type="checkbox" data-role="{{ role.id }}" data-permission="Delete" {% if role.permissions.Delete %}checked{% endif %}>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+document.querySelectorAll('input[type="checkbox"]').forEach((checkbox) => {
+    checkbox.addEventListener('change', function () {
+        const roleId = this.getAttribute('data-role');
+        const permission = this.getAttribute('data-permission');
+        const isChecked = this.checked;
+
+        fetch(`/update-permission/${roleId}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}',
+            },
+            body: JSON.stringify({ permission: permission, value: isChecked }),
+        }).then((response) => {
+            if (!response.ok) {
+                alert('Failed to update permission');
+                this.checked = !isChecked; // Revert checkbox state on failure
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
